@@ -328,6 +328,13 @@ class Base extends React.Component<InternalBlockProps & ConfigConsumerProps, Bas
     // force render expand icon for measure usage or it will cause dead loop
     if (!forceRender && (expanded || !isEllipsis)) return null;
 
+    let expandStr: React.ReactNode;
+    if (symbol) {
+      expandStr = symbol;
+    } else {
+      expandStr = this.expandStr;
+    }
+
     return (
       <a
         key="expand"
@@ -335,7 +342,7 @@ class Base extends React.Component<InternalBlockProps & ConfigConsumerProps, Bas
         onClick={this.onExpandClick}
         aria-label={this.expandStr}
       >
-        {symbol ? symbol : this.expandStr}
+        {expandStr}
       </a>
     );
   }
